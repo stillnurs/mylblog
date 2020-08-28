@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    MyTags
+{% endblock %}
+
+{% block latest %}
+{% for latest in latest_posts %}
+        <li style="width:">
+          <article class="bgded overlay" style="background-image:url('{{ latest.image.url }}'); width: 1000px; height:350px;">
+            <p>{{latest.author}}</p>
+            <h3 class="heading">{{latest.title}}</h3>
+            <p>{{latest.body|truncatechars:200 }}&hellip;</p>
+            <footer><a class="btn" href="{{ latest.get_absolute_url }}" style="text-decoration: none;">Read more</a></footer>
+          </article>
+        </li>
+        {% endfor %}
+{% endblock %}
+
+
+
+{% block content %}
+    {% for tag in tags %}
+        <div class="alert alert-primary" role="alert">
+   <a href="{{tag.get_absolute_url}}" class="alert-link" style="text-decoration: none;"> {{tag.name}} </a>. Give it a click if you like.
+</div>
+    {% endfor %}
+{% endblock %}

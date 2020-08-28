@@ -1,64 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<!--
+Template Name: Geodarn
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <title>
+<title>
         {% block title%}
             BASE HTML
-        {% endblock %}
-
-
-    </title>
-
-</head>
-
-
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e0810d;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="{%url 'post_list'%}">MYBLOG</a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-            style="color: #ffffff">Search</button>
-        </form>
-    </div>
-</nav>
-
-
-
-
-
-{% block content %}
-
+          {% endblock %}
+</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+{% block extrahead %}
+  <link href="{% static '/layout/styles/fontawesome-4.6.3.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link href="{% static '/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
 {% endblock %}
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay" style="background-image:url('images/demo/backgrounds/01.png');"> 
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <div id="logo" class="fl_left">
+        <h1><a href="{%url 'post_list'%}">Method.future</a></h1>
+      </div>
+      <nav id="mainav" class="fl_right">
+        <ul class="clear">
+          <li class="active"><a href="base.html">Home</a></li>
+          <li><a class="drop" href="#">Pages</a>
+            <ul>
+              <li><a href="{%url 'gallery-set'%}">Gallery</a></li>
+              <li><a href="full-width.html">Full Width</a></li>
+              <li><a href="sidebar-left.html">Sidebar Left</a></li>
+              <li><a href="sidebar-right.html">Sidebar Right</a></li>
+              <li><a href="basic-grid.html">Basic Grid</a></li>
+            </ul>
+          </li>
+          <li><a class="drop" href="#">Dropdown</a>
+            <ul>
+              <li><a href="#">Level 2</a></li>
+              <li><a class="drop" href="#">Level 2 + Drop</a>
+                <ul>
+                  <li><a href="#">Level 3</a></li>
+                  <li><a href="#">Level 3</a></li>
+                  <li><a href="#">Level 3</a></li>
+                </ul>
+              </li>
+              <li><a href="{% url 'tag_list' %}">TAGS</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Link Text</a></li>
+          <li><a href="#">Link Text</a></li>
+        </ul>
+      </nav>
+      <!-- ################################################################################################ -->
+    </header>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div id="pageintro" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div class="flexslider basicslider">
+      <ul class="slides">
+        {% block latest %}
+
+        {%endblock%}
+      </ul>
+    </div>
+
+    <!-- ################################################################################################ -->
+  </div>
+
+  <!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="btmspace-80 center">
+      <h3 class="nospace">Dignissim dictum consequat</h3>
+      <p class="nospace">Erat in diam eu placerat purus est ac nisi integer sed rutrum dictum.</p>
+    </div>
 
 
 
+    <ul class="nospace group services">
+      {% block content %}
+
+      {% endblock %}
+
+    </ul>
+
+
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper">
+  <article id="shout" class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="three_quarter first">
+      <h2 class="heading btmspace-10">Magna lacus mattis in ipsum tincidunt</h2>
+      <p class="nospace">Porta erat cras vitae maximus purus suspendisse blandit nec justo mollis etiam vitae.</p>
+    </div>
+    <footer class="one_quarter"><a class="btn" href="#">Accumsan metus</a></footer>
+    <!-- ################################################################################################ -->
+  </article>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <section class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="btmspace-80 center">
+      <h3 class="nospace">Gravida nulla aliquam</h3>
+      <p class="nospace">Erat volutpat integer vestibulum purus et sagittis rhoncus.</p>
+    </div>
+    <div class="group">
+      <div class="one_third first">
+        <h6 class="nospace font-x1">Elit vel porttitor</h6>
+        <p>Ex suspendisse vestibulum turpis luctus pretium posuere vestibulum feugiat non metus quis vitae&hellip;</p>
+        <footer><a class="btn" href="#">Read More</a></footer>
+      </div>
+      <article class="one_third"><a href="#"><img class="btmspace-30" src="{% static 'images/demo/320x210.png' %}" alt=""></a>
+        <h6 class="nospace font-x1">Sapien porttitor ut</h6>
+        <p>Dignissim praesent consectetur nec tellus ut rutrum nam laoreet finibus mattis integer ullamcorper arcu&hellip;</p>
+      </article>
+      <article class="one_third"><a href="#"><img class="btmspace-30" src="{% static 'images/demo/320x210.png' %}" alt=""></a>
+        <h6 class="nospace font-x1">Praesent sed blandit</h6>
+        <p>Pellentesque vehicula dictum ligula tellus convallis nisl vel scelerisque quam ligula a mauris quisque&hellip;</p>
+      </article>
+    </div>
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4 bgded overlay" style="background-image:url('{% static '/images/demo/backgrounds/02.png' %}');">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="one_third first">
+      <h3 class="heading">Geodarn</h3>
+      <ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <ul class="nospace meta">
+        <li class="btmspace-15"><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <form method="post" action="#">
+        <fieldset>
+          <legend>Newsletter:</legend>
+          <div class="clear">
+            <input type="text" value="" placeholder="Type Email Here&hellip;">
+            <button class="fa fa-share" type="submit" title="Submit"><em>Submit</em></button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 
 
 
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<!-- JAVASCRIPTS -->
+<script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.flexslider-min.js' %}"></script>
 </body>
 </html>

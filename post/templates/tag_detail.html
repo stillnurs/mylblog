@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Tag-{{tags.name| title }}
+{% endblock %}
+
+
+
+
+{% block latest %}
+{% for latest in latest_posts %}
+        <li style="width:">
+          <article class="bgded overlay" style="background-image:url('{{ latest.image.url }}'); width: 1000px; height:350px;">
+            <p>{{latest.author}}</p>
+            <h3 class="heading">{{latest.title}}</h3>
+            <p>{{latest.body|truncatechars:200 }}&hellip;</p>
+            <footer><a class="btn" href="{{ latest.get_absolute_url }}" style="text-decoration: none;">Read more</a></footer>
+          </article>
+        </li>
+        {% endfor %}
+{% endblock %}
+
+
+
+
+
+{% block content %}
+<a href="{{tag.get_absolute_url}}" style="text-decoration: none;">{{tags}}</a>
+ {% for post in tags.tag_post_set.all %}
+        <div class="contentPosts" style="width:100%; display:inline-block; justify-content: space-around; position:relative; margin-bottom:20px" >
+
+<!-- <li class="">-->
+        <article class="bgded overlay" style="background-image:url('{{ post.image.url }}'); height: 350px; position:relative;">
+
+           <a href="{{ post.get_absolute_url }}"><div class="txtwrap" style="height: 100%"><i class="block fa fa-4x"></i>
+            <h6 class="heading">{{post.title}}</h6>
+            <p>{{post.body|truncatechars:400 }}&hellip;</p>
+          </div></a>
+          <footer><a href="{{ post.get_absolute_url }}">More &raquo;</a></footer>
+        </article>
+<!--      </li>-->
+
+
+
+</div>
+
+    {% endfor %}
+{% endblock %}

@@ -11,6 +11,21 @@ class PublishedManager(models.Manager):
 		return super().get_queryset().filter(status='published')
 
 
+class Tag(models.Model):
+	name = models.CharField(max_length=50, verbose_name='Tag name', unique=True, null=True)
+	slug = models.SlugField(max_length=50, unique=True)
+
+	class Meta:
+		verbose_name = 'Тег'
+		verbose_name_plural = 'Теги'
+
+	def __str__(self):
+		return self.name
+
+	def get_absolute_url(self):
+		return reverse('tag_detail', args=[self.slug])
+
+
 class Post(models.Model):
 	STATUS_CHOICES = (
 		('draft', 'Draft'),
@@ -24,6 +39,8 @@ class Post(models.Model):
 	create = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+	image = models.ImageField(upload_to='posts/%Y/%m/%d/', blank=True)
+	tags = models.ManyToManyField(Tag, related_name='tag_post_set', blank=True)
 
 	# Менеджер по умолчанию
 	objects = models.Manager()
@@ -40,3 +57,20 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
+
+
+class Comment(models.Model):
+	post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+	name = models.CharField(max_length=50, verbose_name='Name')
+	body = models.TextField(verbose_name='Comments')
+	created = models.DateTimeField(auto_now_add=True)
+	updated = models.DateTimeField(auto_now=True)
+	active = models.BooleanField(default=True)
+
+	class Meta:
+		ordering = ['-created']
+		verbose_name = 'Комментарий'
+		verbose_name_plural = 'Коментарии'
+
+	def __str__(self):
+		return 'Comment by {} on {}'.format(self.name, self.post)
